@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head') %>
+    <script src="/script/homepage.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../includes/header') %>
+    <main>
+      <section id="hero">
+        <div id="hero-text">
+          <h1>Indian Railway</h1>
+          <p>Safety | Security | Punctuality</p>
+        </div>
+      </section>
+      <section>
+        <div id="video-div">
+          <video controls loop id="video">
+            <source src="/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      <section class="album">
+        <h3>Our Top Railway's</h3>
+        <div class="card-container" class="container">
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/train/vande.jpg"
+              class="card-img-top"
+              alt="Vande Bharat "
+            />
+            <div class="card-body">
+              <h5 class="card-title">Vande Bharat</h5>
+              <p class="card-text">
+                A semi-high-speed train introduced as one of the fastest trains
+                in India. 41 Vande <span class="Show">Show more</span
+                ><span class="long-text"
+                  >Bharat train running now in india. Known for its modern
+                  amenities, energy efficiency, and aerodynamic design.
+                  <span class="hide">Show less</span>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/train/rajdhani.jpg"
+              class="card-img-top"
+              alt="rajdhani"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Rajdhani Express</h5>
+              <p class="card-text">
+                A series of premium long-distance trains connecting major cities
+                to the national<span class="Show">Show more</span
+                ><span class="long-text">
+                  capital, New Delhi. Known for speed and luxury services,
+                  including air-conditioned coaches and onboard catering.
+                  <span class="hide">Show less</span></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/train/shatabdi.jpg"
+              class="card-img-top"
+              alt="shatabdi"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Shatabdi Express</h5>
+              <p class="card-text">
+                High-speed day trains connecting major cities. Known for their
+                punctuality<span class="Show">Show more</span>
+                <span class="long-text"
+                  >and comfort, with air-conditioned chair cars and onboard
+                  catering services. <span class="hide">Show less</span></span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="album" id="Stations-photo">
+        <h3>Our Top Stations</h3>
+        <div class="card-container" class="container">
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/stations/CSMT1.jpg"
+              class="card-img-top"
+              alt="rajdhani"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Chhatrapati Shivaji Maharaj T</h5>
+              <p class="card-text">
+                An iconic and historic railway station in Mumbai,Maharashtra.
+                UNESCO World<span class="Show">Show more</span
+                ><span class="long-text">
+                  Heritage Site. A symbol of Victorian Gothic Revival
+                  architecture. <span class="hide">Show less</span></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/stations/kol.jpg"
+              class="card-img-top"
+              alt="rajdhani"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Howrah Junction (Kolkata)</h5>
+              <p class="card-text">
+                One of the busiest and oldest railway stations in India.Located
+                in Kolkata,<span class="Show">Show more</span
+                ><span class="long-text">
+                  West Bengal. Serves as a major gateway to the eastern part of
+                  the country.
+                  <span class="hide">Show less</span></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="width: 21rem">
+            <img
+              src="/homepage/stations/Dehli.jpg"
+              class="card-img-top"
+              alt="rajdhani"
+            />
+            <div class="card-body">
+              <h5 class="card-title">New Delhi Railway Station</h5>
+              <p class="card-text">
+                One of the largest and busiest railway stations in India.
+                Located in the capital<span class="Show">Show more</span
+                ><span class="long-text">
+                  city, New Delhi. Central hub connecting various regions,
+                  including North India.
+                  <span class="hide">Show less</span></span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <input type="hidden" id="notifyJson" value="<%= notifyJson %>" />
+        <div id="notification"></div>
+
+        <script>
+          $(document).ready(() => {
+            let notifyJson = $("#notifyJson").val();
+            notifyJson = JSON.parse(notifyJson);
+            if (notifyJson.result) {
+              if (!notifyJson.data.istraincancel && !notifyJson.data.iscancel) {
+                const htmlCode = `<div id="notify">
+                            <button class="close-btn">×</button>
+                            <p>Your Upcomming Trip</p>
+                            <p>${notifyJson.data.source} <strong> >> </strong>${notifyJson.data.destination}</p>
+                            <p>${notifyJson.data.formatedDate}</p>
+                          </div>`;
+                setTimeout(function () {
+                  $("#notification").html(htmlCode);
+
+                  $(".close-btn").click(function () {
+                    $("#notify").remove();
+                  });
+                }, 1000);
+              }
+            }
+          });
+        </script>
+      </section>
+    </main>
+    <%- include('../includes/footer') %>
+  </body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../includes/head") %>
+    <link rel="stylesheet" href="/style/booktikit.css" />
+    <link rel="stylesheet" href="/style/search.css" />
+  </head>
+  <body>
+    <header><%- include("../includes/header") %></header>
+    <main>
+      <div id="container">
+        <div class="card">
+          <div class="card-header">
+            <h3><%= train.tsname %> (<%= train.trainnumber %>)</h3>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <p>
+                <span> <%= train.stationfrom.DepartureTime %> </span> |
+                <span> <%= train.stationfrom.StationName %> </span>
+              </p>
+              <p>
+                <span class="lineoftime">----</span>
+                <span> <%= train.duration %> </span>
+                <span class="lineoftime">----</span>
+              </p>
+
+              <p>
+                <span> <%= train.stationTo.ArivalTime %> </span> |
+                <span> <%= train.stationTo.StationName %> </span>
+              </p>
+            </h5>
+          </div>
+        </div>
+        <form action="/booktikit" method="post">
+          <div class="card">
+            <h5 class="card-header">Personal Detail</h5>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="fname"
+                    required
+                    value="<%= user.fname %>"
+                  />
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    name="lname"
+                    required=""
+                    value="<%= user.lname %>"
+                  />
+                </div>
+              </div>
+              <div id="contact" class="row g-3">
+                <div class="col-sm-6">
+                  <label for="mno" class="form-label">Mobile Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="mno"
+                    placeholder="1234 Main St"
+                    name="mno"
+                    required=""
+                    value="<%= user.mno %>"
+                  />
+                </div>
+                <div class="col-sm-6">
+                  <label for="Email" class="form-label">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Email"
+                    name="email"
+                    required=""
+                    value="<%= user.email %>"
+                  />
+                </div>
+              </div>
+              <div id="contact" class="row g-3">
+                <div class="col-sm-6">
+                  <label for="Email" class="form-label">Select Scheme</label>
+                  <select
+                    id="scheme"
+                    name="selectedScheme"
+                    class="form-control"
+                  >
+                    <option>select</option>
+                    <option value="child">Child(Age less than 5 year)</option>
+                    <option value="adult">Adult(Age more than 60 year)</option>
+                    <option value="handicap">Handicap</option>
+                  </select>
+                </div>
+                <script>
+                  $(document).ready(() => {
+                    const price = $("#price").val();
+                    let value;
+                    $("#scheme").on("change", () => {
+                      const selectedScheme = $("#scheme").val();
+                      if (
+                        selectedScheme == "child" ||
+                        selectedScheme == "adult"
+                      ) {
+                        value = price / 2;
+                        $("#price").val(value);
+                      }
+                      if (selectedScheme == "handicap") {
+                        value = price / 4;
+                        $("#price").val(value);
+                      }
+                      if (selectedScheme == "select") {
+                        $("#price").val($("#ReservedPrice").val());
+                      }
+                    });
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-header">Fare Detail</h5>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">Train Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="tname"
+                    value="<%= train.tsname %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Date</label>
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    id="date"
+                    name="date"
+                    placeholder="dd-mm-yyyy"
+                    value="<%= date %>"
+                  />
+                  <input
+                    type="date"
+                    class="form-control"
+                    placeholder="dd-mm-yyyy"
+                    value="<%= date %>"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Price</label>
+                <input
+                  type="price"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  value="<%= price %>"
+                  disabled
+                />
+                <input type="hidden" id="ReservedPrice" value="<%= price %>" />
+              </div>
+            </div>
+          </div>
+          <input
+            type="hidden"
+            name="trianNo"
+            value="<%= train.trainnumber %>"
+          />
+          <input type="hidden" name="userid" value="<%= user.userid%>" />
+          <input
+            type="hidden"
+            name="from"
+            value="<%= train.stationfrom.StationName %>"
+          />
+          <input
+            type="hidden"
+            name="dayNo"
+            value="<%= train.stationfrom.Day %>"
+          />
+          <input
+            type="hidden"
+            name="DepartureTime"
+            value="<%= train.stationfrom.DepartureTime %>"
+          />
+          <input
+            type="hidden"
+            name="ArivalTime"
+            value="<%= train.stationTo.ArivalTime %>"
+          />
+          <input
+            type="hidden"
+            name="destination"
+            value="<%= train.stationTo.StationName %>"
+          />
+          <input type="hidden" name="distance" value="<%= train.distance %>" />
+          <input type="hidden" name="trainname" value="<%= train.tlname %>" />
+          <div class="submitbtncontainer">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer><%- include("../includes/footer") %></footer>
+  </body>
+</html>

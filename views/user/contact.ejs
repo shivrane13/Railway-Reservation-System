@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head') %>
+    <link rel="stylesheet" href="/style/search.css" />
+    <style>
+      .container {
+        padding: 50px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header><%- include('../includes/header') %></header>
+    <main>
+      <section id="contact" class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>Contact Us</h2>
+              <p class="lead">
+                Have questions or feedback? Feel free to reach out to us using
+                the contact details below:
+              </p>
+              <ul class="list-unstyled">
+                <li>
+                  <strong>Address:</strong> 123 Railway Station Road, City,
+                  State, Zip
+                </li>
+                <li><strong>Phone:</strong> +91 123 456 7890</li>
+                <li><strong>Email:</strong> info@railwayreservation.com</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer><%- include('../includes/footer') %></footer>
+  </body>
+</html>

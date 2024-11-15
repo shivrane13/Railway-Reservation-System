@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head') %>
+    <link rel="stylesheet" href="/style/search.css" />
+    <link rel="stylesheet" href="/style/user/review.css" />
+    <script src="/script/review.js" defer></script>
+    <style>
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        margin: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .card-header {
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+
+      .card-header h3 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #343a40;
+      }
+
+      .card-body {
+        text-align: center;
+      }
+
+      .card-title p {
+        margin: 10px 0;
+      }
+
+      .card-text {
+        font-size: 0.9em;
+        color: #28a745;
+        margin-top: 10px;
+      }
+      .review-list ul li .left span {
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+      }
+      .review-list ul li .left {
+        flex: none;
+        max-width: none;
+        margin: 0 10px 0 0;
+      }
+      .review-list ul li .left span img {
+        border-radius: 50%;
+      }
+      .review-list ul li .right h4 {
+        font-size: 16px;
+        margin: 0;
+        display: flex;
+      }
+      .review-list ul li .right h4 .gig-rating {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        color: #ffbf00;
+      }
+      .review-list ul li .right h4 .gig-rating svg {
+        margin: 0 4px 0 0px;
+      }
+      .country .country-flag {
+        width: 16px;
+        height: 16px;
+        vertical-align: text-bottom;
+        margin: 0 7px 0 0px;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      .country .country-name {
+        color: #95979d;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .review-list ul li {
+        border-bottom: 1px solid #dadbdd;
+        padding: 0 0 30px;
+        margin: 0 0 30px;
+      }
+      .review-list ul li .right {
+        flex: auto;
+      }
+      .review-list ul li .review-description {
+        margin: 20px 0 0;
+      }
+      .review-list ul li .review-description p {
+        font-size: 14px;
+        margin: 0;
+      }
+      .review-list ul li .publish {
+        font-size: 13px;
+        color: #95979d;
+      }
+
+      .review-section h4 {
+        font-size: 20px;
+        color: #222325;
+        font-weight: 700;
+      }
+      .review-section .stars-counters tr .stars-filter.fit-button {
+        padding: 6px;
+        border: none;
+        color: #4a73e8;
+        text-align: left;
+      }
+      .review-section .fit-progressbar-bar .fit-progressbar-background {
+        position: relative;
+        height: 8px;
+        background: #efeff0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        background-color: #ffffff;
+        border-radius: 999px;
+      }
+      .review-section .stars-counters tr .star-progress-bar .progress-fill {
+        background-color: #ffb33e;
+      }
+      .review-section .fit-progressbar-bar .progress-fill {
+        background: #2cdd9b;
+        background-color: rgb(29, 191, 115);
+        height: 100%;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        border-radius: 999px;
+      }
+      .review-section .fit-progressbar-bar {
+        display: flex;
+        align-items: center;
+      }
+      .review-section .stars-counters td {
+        white-space: nowrap;
+      }
+      .review-section .stars-counters tr .progress-bar-container {
+        width: 100%;
+        padding: 0 10px 0 6px;
+        margin: auto;
+      }
+      .ranking h6 {
+        font-weight: 600;
+        padding-bottom: 16px;
+      }
+      .ranking li {
+        display: flex;
+        justify-content: space-between;
+        color: #95979d;
+        padding-bottom: 8px;
+      }
+      .review-section .stars-counters td.star-num {
+        color: #4a73e8;
+      }
+      .ranking li > span {
+        color: #62646a;
+        white-space: nowrap;
+        margin-left: 12px;
+      }
+      .review-section {
+        border-bottom: 1px solid #dadbdd;
+        padding-bottom: 24px;
+        margin-bottom: 34px;
+        padding-top: 64px;
+      }
+      .review-section select,
+      .review-section .select2-container {
+        width: 188px !important;
+        border-radius: 3px;
+      }
+      ul,
+      ul li {
+        list-style: none;
+        margin: 0px;
+      }
+      .helpful-thumbs,
+      .helpful-thumb {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../includes/header') %>
+    <main>
+      <div>
+        <% if(trainData.length !== 0 ) { %>
+        <div class="card" id="train-list">
+          <div class="card-header">
+            <h3><%= trainData.tname %>(<%= trainData.tno %>)</h3>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <p>
+                <span><%= trainData.dtime %></span> |
+                <span><%= trainData.sfrom %></span>
+              </p>
+              <p>
+                <span class="lineoftime">----</span>
+                <span><%= trainData.totaltime %></span>
+                <span class="lineoftime">----</span>
+              </p>
+              <p>
+                <span><%= trainData.atime %></span> |
+                <span><%= trainData.sto %></span>
+              </p>
+            </h5>
+          </div>
+        </div>
+        <h2 id="fname">Reviews of <%= trainData.tfname %></h2>
+
+        <% if(locals.isAuth) { %>
+        <div class="mb-3" id="reviewContainer">
+          <form>
+            <input
+              type="text"
+              class="form-control"
+              id="enteredReview"
+              name="enteredReview"
+              placeholder="Enter Your Review"
+            />
+            <input
+              type="text"
+              id="trainId"
+              value="<%= trainData.tno %>"
+              hidden
+            />
+            <input
+              type="number"
+              id="loginUser"
+              value="<%= trainData.userId %>"
+              hidden
+            />
+            <input
+              type="hidden"
+              id="username"
+              name="username"
+              value="<%= locals.userName %>"
+            />
+            <button class="btn btn-primary" id="reviewBtn">Send</button>
+          </form>
+        </div>
+        <hr />
+        <% } %>
+        <ul id="userReview">
+          <input
+            type="number"
+            value="<%= reviews.length %>"
+            id="revLen"
+            hidden
+          />
+          <% } %>
+        </ul>
+      </div>
+      <div class="review-list card" id="train-list">
+        <ul id="newReviewList">
+          <% if(reviews.length != 0 ) { %> <% for(const review of reviews) { %>
+          <li id="review-<%= review.rid %>">
+            <div class="d-flex">
+              <div class="right">
+                <h4><%= review.fname %></h4>
+                <div style="display: flex; justify-content: space-between">
+                  <div class="review-description">
+                    <p><%= review.rev %></p>
+                  </div>
+                  <% if(review.userid == trainData.userId) {%>
+                  <div>
+                    <form
+                      class="delete-form"
+                      data-review-id="<%= review.rid %>"
+                    >
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                        id="deleteBTN"
+                      ></button>
+                    </form>
+                  </div>
+                  <% } %>
+                </div>
+                <span class="publish py-3 d-inline-block w-100"
+                  >Published at <%= review.date %></span
+                >
+              </div>
+            </div>
+          </li>
+          <% } %> <% } else {%>
+          <p class="review" style="text-align: center" id="notReviewAlert">
+            There is no review available for this train yet...
+          </p>
+          <% } %>
+        </ul>
+      </div>
+      <script>
+        $(document).ready(
+          $(document).on("click", "#deleteBTN", function () {
+            var reviewId = $(this).closest(".delete-form").data("review-id");
+            var review = $(`#review-${reviewId}`);
+            Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                  url: `/review/${reviewId}/delete`,
+                  method: "POST",
+                });
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your Review has been deleted Successfully.",
+                  icon: "success",
+                });
+                review.remove();
+              }
+            });
+          })
+        );
+      </script>
+    </main>
+    <%- include('../includes/footer') %>
+  </body>
+</html>

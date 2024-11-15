@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.warning {
+    display: none;
+}
+
+section {
+    display: flex;
+}
+
+.navbar {
+    width: 250px;
+    padding: 1rem;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 10px 10px 10px rgba(227, 215, 215, 0.434);
+}
+
+.navbar.active {
+    width: 0px;
+    padding: 0;
+}
+
+.navbar img {
+    margin-left: 10px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.center-nav,
+.bottom-nav {
+    list-style: none;
+}
+
+.center-nav a,
+.bottom-nav a {
+    color: #000;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.center-nav li,
+.bottom-nav li {
+    padding: 5px 20px;
+    margin: 5px 0;
+    transition: all 0.3s;
+}
+
+.center-nav li:hover,
+.bottom-nav li:hover {
+    color: purple;
+    transform: translateX(4px);
+}
+
+.bottom-nav li a:hover,
+.center-nav li a:hover {
+    color: purple;
+}
+
+hr {
+    margin-left: 20px;
+    height: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+    width: 150px;
+    background-color: #2f2c2c1d;
+    outline: none;
+    border: none;
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 30px;
+}
+
+
+/* ======= Main Content Styling ======= */
+.bars {
+    cursor: pointer;
+}
+
+.main-content {
+    padding: 10px;
+    width: 100%;
+}
+
+.main-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.bar {
+    margin: 3px 0;
+    width: 20px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #000;
+}
+
+.input {
+    width: 100%;
+    text-align: center;
+}
+
+.input input {
+    width: 90%;
+    outline: none;
+    border: none;
+    border: 1px solid rgb(153, 132, 132);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user {
+    width: 40px;
+    position: relative;
+    transform: scaleX(-1);
+}
+
+.user img {
+    width: 100%;
+}
+
+/* ======== Styling Dashboard ======== */
+.dashboard {
+    padding: 10px;
+}
+
+.heading {
+    margin: 10px 0;
+}
+
+.color-box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    display: flex;
+    height: 120px;
+    flex-direction: column;
+    width: 180px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 10px 5px;
+}
+
+.box i {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+
+
+
+.box p {
+    line-height: 30px;
+}
+
+.skyblue {
+    background-color: rgb(135, 220, 253);
+}
+
+.yellow {
+    background-color: rgb(231, 251, 151);
+}
+
+.purple {
+    background-color: rgb(243, 178, 255);
+}
+
+.red {
+    background-color: rgb(255, 178, 178);
+}
+
+/* ======== Styling Recent Activity ======== */
+.activity {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.activity table {
+    width: 100%;
+}
+
+tr {
+    row-gap: 0px;
+}
+
+th {
+    line-height: 40px;
+    text-align: left;
+}
+
+td {
+    line-height: 28px;
+}
+
+td,
+th {
+    margin: 0;
+}
+
+@media screen and (max-width:630px) {
+    section {
+        display: none;
+    }
+
+    .warning {
+        padding: 5rem;
+        text-align: center;
+        line-height: 35px;
+        background-color: rgb(185, 72, 72);
+        display: flex;
+        color: #e1cdcd;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+    }
+}

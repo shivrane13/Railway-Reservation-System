@@ -1,0 +1,27 @@
+#train-list {
+    width: 90%;
+    margin: 2rem auto 5rem auto;
+}
+
+.card {
+    margin-top: 0.7rem;
+    position: static;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#available {
+    color: green;
+}
+
+#unavailable {
+    color: red;
+}
+
+#train-avl-info {
+    text-align: center;
+    font-size: 1.2rem;
+}

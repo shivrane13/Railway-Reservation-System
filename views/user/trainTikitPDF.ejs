@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Train Invoice</title>
+    <meta name="author" content="Gaurav Rane" />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+      }
+
+      .invoice-container {
+        max-width: 900px;
+        background-color: #fff;
+        padding: 40px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin-top: 20px;
+        color: #333;
+      }
+
+      h3 {
+        font-size: 14px;
+        margin-top: 15px;
+        color: #555;
+        text-transform: uppercase;
+      }
+
+      .info-section,
+      .details-section {
+        margin-bottom: 30px;
+      }
+
+      .info-section p {
+        font-size: 13pt;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .highlight {
+        font-size: 24pt;
+        color: #2ad19c;
+        text-align: center;
+        margin: 20px 0;
+        text-decoration: underline;
+      }
+
+      .details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+
+      .details-table th,
+      .details-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      .details-table th {
+        background-color: #f7f7f7;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .details-table td p {
+        font-size: 13pt;
+        margin: 0;
+      }
+
+      .seat-info {
+        font-size: 17.5pt;
+        color: #187c5d;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .total-amount {
+        text-align: right;
+        font-size: 18pt;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #111;
+      }
+
+      .payment-details {
+        margin-top: 30px;
+      }
+
+      .payment-details p {
+        font-size: 14pt;
+        margin-bottom: 5px;
+        color: #444;
+      }
+
+      .notes-section {
+        margin-top: 30px;
+        font-size: 12pt;
+        color: #777;
+      }
+
+      .notes-section p {
+        line-height: 1.4;
+      }
+
+      a {
+        color: #2ad19c;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+      .details-section {
+        margin-bottom: 30px;
+      }
+
+      .info-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .info-item {
+        width: 48%;
+        margin-bottom: 10px;
+      }
+
+      .info-item p {
+        font-size: 14pt;
+        color: #444;
+        margin-bottom: 5px;
+      }
+
+      .highlight {
+        font-size: 24pt;
+        color: #2ad19c;
+        text-align: center;
+        margin: 20px 0;
+        text-decoration: underline;
+      }
+
+      .total-amount {
+        text-align: right;
+        font-size: 18pt;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #111;
+      }
+
+      .payment-details {
+        margin-top: 30px;
+      }
+
+      .payment-details p {
+        font-size: 14pt;
+        margin-bottom: 5px;
+        color: #444;
+      }
+
+      .notes-section {
+        margin-top: 30px;
+        font-size: 12pt;
+        color: #777;
+      }
+
+      .notes-section p {
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="invoice-container">
+      <h1>Ticket</h1>
+
+      <!-- Invoice Information -->
+      <div class="info-section">
+        <p>Ticket No: <strong>#<%= data.id %></strong></p>
+      </div>
+
+      <!-- Highlighted Passenger Name -->
+      <div class="highlight">Indian Railway</div>
+
+      <div class="info-section">
+        <p><strong>INVOICE IRCTC</strong></p>
+        <p>123 Railway Station Road, City, State, Zip</p>
+        <p>Email: info@railwayreservation.com</p>
+      </div>
+
+      <!-- Journey Details -->
+      <div class="details-section">
+        <table class="details-table">
+          <thead>
+            <tr>
+              <th>From Station</th>
+              <th>To Station</th>
+              <th>Journey Date</th>
+              <th>Seat No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p>
+                  <span><%= data.source %> </span> -
+                  <span><%= data.DepartureTime %></span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <span><%= data.destination %></span> -
+                  <span><%= data.ArivalTime %></span>
+                </p>
+              </td>
+              <td><p><%= data.date %></p></td>
+              <td class="seat-info"><p><%= data.blockNo %></p></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="details-section">
+          <div class="info-grid">
+            <div class="info-item">
+              <p>
+                <strong>Passenger Name:</strong>
+                <span><%= data.fname %></span> <span><%= data.lname %></span>
+              </p>
+            </div>
+            <div class="info-item">
+              <p><strong>Ticket Number:</strong> #<%= data.id %></p>
+            </div>
+            <div class="info-item">
+              <p><strong>Issued Date:</strong> <%= data.issuedate %></p>
+            </div>
+            <div class="info-item">
+              <p><strong>Phone:</strong> <%= data.mno %></p>
+            </div>
+            <div class="info-item">
+              <p><strong>Train Name:</strong> <%= data.trainname %></p>
+            </div>
+            <% if(data.selectedScheme == "child"){ %>
+            <div class="info-item">
+              <p>
+                <strong>Selected Scheme :</strong> <%= data.selectedScheme %>
+              </p>
+            </div>
+            <% } else if(data.selectedScheme == "adult") {%>
+            <div class="info-item">
+              <p>
+                <strong>Selected Scheme :</strong> <%= data.selectedScheme %>
+              </p>
+            </div>
+            <% } else if(data.selectedScheme == "handicap"){ %>
+            <div class="info-item">
+              <p>
+                <strong>Selected Scheme :</strong> <%= data.selectedScheme %>
+              </p>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Summary -->
+      <h2>Total Amount: ₹<%= data.price %></h2>
+
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2>Note:</h2>
+        <p>
+          Please ensure to carry a valid ID along with this ticket for
+          verification. Arrive at the station 30 minutes before the departure
+          time. In case of delays or cancellations, check the railway’s official
+          website or contact the helpline for updates.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

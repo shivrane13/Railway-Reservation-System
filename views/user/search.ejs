@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head') %>
+    <link rel="stylesheet" href="/style/search.css" />
+  </head>
+  <body>
+    <%- include('../includes/header') %>
+    <main>
+      <div id="train-list">
+        <% if(data.length !== 0) {%>
+        <div class="card">
+          <p class="card-text" id="train-avl-info">
+            <%= data.length %> Result for
+            <strong
+              ><%= data[0].fareInfo.stationFrom.StationName %>
+              <img src="/homepage/arrowto.png" alt="arrow" id="arrow" />
+              <%= data[0].fareInfo.stationTo.StationName %>
+            </strong>
+          </p>
+        </div>
+        <% for(const railway of data) {%>
+        <div class="card">
+          <div class="card-header">
+            <h3><%= railway.tsname %> (<%= railway.trainnumber %>)</h3>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <p>
+                <span> <%= railway.fareInfo.stationFrom.DepartureTime %> </span>
+                |
+                <span> <%= railway.fareInfo.stationFrom.StationName %> </span>
+              </p>
+              <p>
+                <span class="lineoftime">----</span>
+                <span> <%= railway.duration %> </span>
+                <span class="lineoftime">----</span>
+              </p>
+
+              <p>
+                <span> <%= railway.fareInfo.stationTo.ArivalTime %> </span> |
+                <span> <%= railway.fareInfo.stationTo.StationName %> </span>
+              </p>
+            </h5>
+            <% if(railway.shedule == true){ %> <% if(railway.isCancel == null){
+            %>
+            <div class="mb-2 d-flex justify-content-between">
+              <% if(!railway.isDepartured) {%>
+
+              <p class="card-text" id="available">
+                Train is Available on <%= fdate %>
+              </p>
+              <div>
+                <% if(railway.available > 0){ %>
+                <p id="available"><%= railway.available %> Seats Remening</p>
+                <% } else { %>
+                <p id="unavailable">
+                  <%= railway.waiting %> Seats are in Waiting
+                </p>
+                <% } %>
+              </div>
+              <% } else { %>
+              <p id="unavailable">Train is Departured from Station</p>
+              <% } %>
+            </div>
+            <% } else {%>
+            <p class="card-text" id="unavailable">
+              Train is Canceled on <%= fdate %>
+            </p>
+            <% } %> <% } else { %>
+            <p class="card-text" id="unavailable">
+              Train is Not Available on <%= fdate %>
+            </p>
+            <% } %> <% if(locals.isAuth) { %> <% if(railway.shedule == true &&
+            railway.isCancel == null && !railway.isDepartured ) { %>
+            <a
+              href="/booktikit/<%= railway.id %>/<%= railway.fareInfo.stationFrom.StationName %>/<%= railway.fareInfo.stationTo.StationName %>/<%= date %>"
+              class="btn btn-primary"
+              >Book Ticket</a
+            >
+            <% } else { %>
+            <a class="btn btn-secondary">Book Ticket</a>
+            <% } %> <% } else { %>
+
+            <a class="btn btn-primary">Book Ticket</a>
+            <% } %>
+            <a
+              href="/review/<%= railway.trainnumber %>"
+              class="btn btn-outline-success"
+            >
+              See Review
+            </a>
+          </div>
+        </div>
+        <% } %> <% } else {%>
+        <p id="unavailable">Train are not available for this route</p>
+        <% } %>
+      </div>
+    </main>
+    <%- include('../includes/footer') %>
+  </body>
+</html>

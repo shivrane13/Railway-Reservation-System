@@ -1,0 +1,17 @@
+#form-element {
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+form {
+    padding: 2rem;
+}
+
+label,
+input {
+    display: block;
+}

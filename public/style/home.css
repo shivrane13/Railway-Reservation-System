@@ -1,0 +1,78 @@
+#hero {
+    height: 45rem;
+    background-image: url(/homepage/img1.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#hero-text {
+    font-family: 'Rubik', sans-serif;
+    color: #0f2fff;
+    text-align: center;
+    margin-left: 50rem;
+    padding-top: 3rem;
+}
+
+#hero-text h1 {
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+#video-div {
+    margin: 7rem 0rem 7rem 0rem;
+    width: 27rem;
+    height: 19rem;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#video {
+    width: 20rem;
+    height: 17rem;
+}
+
+.album {
+    text-align: center;
+}
+
+.album h3 {
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    font-size: 2.5rem;
+}
+
+.card-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.long-text {
+    display: none;
+}
+
+.Show {
+    color: blue;
+}
+
+.Show:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hide {
+    color: blue;
+}
+
+.hide {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#Stations-photo {
+    margin-top: 4rem;
+}

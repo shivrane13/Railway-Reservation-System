@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../includes/head") %>
+    <link rel="stylesheet" href="/style/create.css" />
+    <script src="/script/createaccout.js" defer></script>
+  </head>
+  <body>
+    <%- include("../includes/header") %>
+    <main>
+      <div id="">
+        <h2>Create Your Account</h2>
+        <form action="/create-account" method="post" id="create">
+          <section id="section1">
+            <% if(inputData.hasError) { %>
+            <p class="alert alert-danger" role="alert">
+              <%= inputData.message %>
+            </p>
+            <% } %>
+            <p id="passnotmatch"></p>
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="you@example.com"
+                name="email"
+                value="<%= inputData.email %>"
+              />
+            </div>
+            <div>
+              <label for="pass" class="form-label">Password</label>
+              <input
+                type="pass"
+                class="form-control"
+                id="pass"
+                placeholder="demo1234"
+                name="pass"
+                value="<%= inputData.pass %>"
+              />
+            </div>
+            <div>
+              <label for="cpass" class="form-label">Confirm Password</label>
+              <input
+                type="cpass"
+                class="form-control"
+                id="cpass"
+                placeholder="demo1234"
+                name="cpass"
+              />
+            </div>
+            <div class="btn-alignment">
+              <p class="btn btn-primary" id="nextbtn">Next</p>
+            </div>
+          </section>
+          <section id="section2">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  name="fname"
+                  required=""
+                  value="<%= inputData.fname %>"
+                />
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  name="lname"
+                  required=""
+                  value="<%= inputData.lname %>"
+                />
+              </div>
+
+              <div class="col-12">
+                <label for="mno" class="form-label">Mobile Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mno"
+                  placeholder="1234 Main St"
+                  name="mno"
+                  required=""
+                  value="<%= inputData.mno %>"
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label for="state" class="form-label">Occupation</label>
+                <select
+                  class="form-select"
+                  id="state"
+                  required=""
+                  name="Occupation"
+                  value="<%= inputData.Occupation %>"
+                >
+                  <option value="" selected>Select Your Occupation</option>
+                  <option value="Government">Government</option>
+                  <option value="Public">Public</option>
+                  <option value="Private">Private</option>
+                  <option value="Professional">Professional</option>
+                  <option value="Self Employed">Self Employed</option>
+                  <option value="Student">Student</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="bdate" class="form-label">BirthDate</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="bdate"
+                  name="bdate"
+                  required=""
+                  value="<%= inputData.bdate %>"
+                />
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="my-3">
+              <h5 class="mb2">Gender</h5>
+              <div class="form-check">
+                <input
+                  id="male"
+                  name="gender"
+                  type="radio"
+                  value="Male"
+                  class="form-check-input"
+                  checked=""
+                />
+                <label class="form-check-label" for="credit">Male</label>
+              </div>
+              <div class="form-check">
+                <input id="female" name="gender" value="Female" type="radio"
+                class="form-check-input" <% if(inputData.gender == "Female") {%>
+                checked <% } %> />
+                <label class="form-check-label" for="debit">Female</label>
+              </div>
+            </div>
+            <hr />
+
+            <div class="col-12">
+              <label for="address" class="form-label">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="addr"
+                placeholder="1234 Main St"
+                required=""
+                value="<%= inputData.addr %>"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="state" class="form-label">Select a Nationality</label>
+              <select
+                class="form-select"
+                id="state"
+                required=""
+                name="Nationality"
+                value="<%= inputData.Nationality %>"
+              >
+                <option value="" selected>Select your Nationality</option>
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Russia">Russia</option>
+                <option value="Pakisthan">Pakisthan</option>
+                <option value="Bhutan">Bhutan</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <hr class="my-4" />
+            <div class="submitbtncontainer">
+              <p class="btn btn-primary" id="previuseBtn">Previuse</p>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </main>
+    <%- include("../includes/footer") %>
+  </body>
+</html>

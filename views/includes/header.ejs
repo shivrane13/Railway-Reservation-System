@@ -1,0 +1,107 @@
+<div id="blackdrop"></div>
+<div class="header">
+  <header class="d-flex flex-wrap justify-content-center border-bottom">
+    <a
+      href="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+    >
+      <img src="/logo.png" alt="logo" class="logo" />
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a href="#" class="nav-link"
+          ><img src="" alt="" /><img
+            src="/logo1.png"
+            alt="logo1"
+            class="logo"
+          />
+        </a>
+      </li>
+      <li class="nav-item">
+        <div id="sidebar-btn" class="nav-link">
+          <span></span><span></span><span></span>
+        </div>
+      </li>
+    </ul>
+  </header>
+</div>
+<div id="sidebar">
+  <div
+    class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar-items"
+    style="width: 280px"
+  >
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home"></use>
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <span class="nav-link link-body-emphasis" id="sidebar-booktikit-btn">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2"></use>
+          </svg>
+          Book Ticket
+        </span>
+      </li>
+      <li>
+        <span class="nav-link link-body-emphasis" id="search-btn-sidebar">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2"></use>
+          </svg>
+          Search train
+        </span>
+      </li>
+      <li>
+        <a href="/history" class="nav-link link-body-emphasis">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table"></use>
+          </svg>
+          History
+        </a>
+      </li>
+      <li>
+        <a href="/about" class="nav-link link-body-emphasis">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#grid"></use>
+          </svg>
+          About Us
+        </a>
+      </li>
+      <li>
+        <a href="contact" class="nav-link link-body-emphasis">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle"></use>
+          </svg>
+          Contact Us
+        </a>
+      </li>
+      <li>
+        <% if(!locals.isAuth) { %>
+        <a href="/login" class="nav-link link-body-emphasis">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle"></use>
+          </svg>
+          Login
+        </a>
+        <% } else { %>
+        <form
+          action="/logout"
+          method="post"
+          class="nav-link link-body-emphasis"
+        >
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle"></use>
+          </svg>
+          <button id="logoutBtn">Logout</button>
+        </form>
+        <% } %>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>

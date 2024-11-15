@@ -1,0 +1,222 @@
+<section id="booktikitsearchsection">
+  <div id="formsearchtrain">
+    <form action="/searchBtnStation" method="post">
+      <h2>Book Tiket</h2>
+      <div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="From"
+            aria-label="From"
+            name="sfrom"
+            id="From"
+            required
+          />
+          <ul
+            class="list-group position-absolute recommendationList"
+            id="recommendationListFrom"
+            style="top: 185px; width: 60%"
+          ></ul>
+        </div>
+
+        <div id="arrow-div">
+          <img src="/homepage/sort.png" alt="arrow" id="arrow" />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="To"
+            aria-label="To"
+            id="To"
+            name="sto"
+            required
+          />
+          <ul
+            class="list-group position-absolute recommendationList"
+            id="recommendationListTo"
+            style="top: 285px; width: 60%"
+          ></ul>
+        </div>
+        <div class="col">
+          <input
+            type="date"
+            class="form-control"
+            name="date"
+            id="dateofBooking"
+            required
+          />
+        </div>
+      </div>
+      <div id="search-btn">
+        <button class="btn btn-warning" id="s-btn">Search</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#recommendationListFrom").hide();
+      $("#From").on("input", function () {
+        const StationCode = $("#From").val();
+        $("#recommendationListFrom").show();
+        $.ajax({
+          url: `/getStationCodeRecomendation/${StationCode}`,
+          type: "GET",
+          success: function (res) {
+            let recommendationList = "";
+            for (let i in res) {
+              recommendationList =
+                recommendationList +
+                `<li class="list-group-item stationCodeRecomenation d-flex justify-content-between"><span class="codeRecommendation">${res[i].code}</span><span class="stationNameAutofill">${res[i].name}</span></li>`;
+            }
+            $("#recommendationListFrom").html(recommendationList);
+          },
+        });
+      });
+      $("#recommendationListFrom").on(
+        "click",
+        ".stationCodeRecomenation",
+        function () {
+          const code = $(this).find(".codeRecommendation").text();
+          $("#From").val(code);
+          $("#recommendationListFrom").hide();
+        }
+      );
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("#recommendationListTo").hide();
+      $("#To").on("input", function () {
+        const StationCode = $("#To").val();
+        $("#recommendationListTo").show();
+        $.ajax({
+          url: `/getStationCodeRecomendation/${StationCode}`,
+          type: "GET",
+          success: function (res) {
+            let recommendationList = "";
+            for (let i in res) {
+              recommendationList =
+                recommendationList +
+                `<li class="list-group-item stationCodeRecomenation d-flex justify-content-between"><span class="codeRecommendation">${res[i].code}</span><span class="stationNameAutofill">${res[i].name}</span></li>`;
+            }
+            $("#recommendationListTo").html(recommendationList);
+          },
+        });
+      });
+      $("#recommendationListTo").on(
+        "click",
+        ".stationCodeRecomenation",
+        function () {
+          const code = $(this).find(".codeRecommendation").text();
+          $("#To").val(code);
+          $("#recommendationListTo").hide();
+        }
+      );
+    });
+  </script>
+</section>
+
+<section id="search">
+  <h3>Enter Train Number</h3>
+  <form action="/searchTrainbyname" method="post">
+    <p>
+      <input type="number" name="tno" id="tno" />
+    </p>
+    <ul
+      class="list-group position-absolute recommendationList"
+      id="recommendationListNumbers"
+      style="top: 140px; width: 70%; left: 70px"
+    ></ul>
+    <button class="btn btn-primary">Search</button>
+  </form>
+  <script>
+    $(document).ready(function () {
+      $("#recommendationListNumbers").hide();
+      $("#tno").on("input", function () {
+        const tno = $("#tno").val();
+        $("#recommendationListNumbers").show();
+        $.ajax({
+          url: `/getTrainNumberRecomendation/${tno}`,
+          type: "GET",
+          success: function (res) {
+            let recommendationList = "";
+            for (const i in res) {
+              recommendationList =
+                recommendationList +
+                `<li class="list-group-item trainNumberRecomendation d-flex justify-content-between"><span class="recomendedNumber">${res[i].trainnumber}</span><span class="stationNameAutofill">${res[i].tsname}</span></li>`;
+            }
+            $("#recommendationListNumbers").html(recommendationList);
+          },
+        });
+      });
+      $("#recommendationListNumbers").on(
+        "click",
+        ".trainNumberRecomendation",
+        function () {
+          const selected = $(this).find(".recomendedNumber").text();
+          $("#tno").val(selected);
+          $("#recommendationListNumbers").hide();
+        }
+      );
+    });
+  </script>
+</section>
+
+<footer id="footer">
+  <p id="about">About us</p>
+  <div class="dev-info">
+    <div>
+      <p class="dev-name">Sriraj P. Takalkar</p>
+      <p>(Front End Idea and Design Development)</p>
+    </div>
+    <div>
+      <p class="dev-name">Gaurav P. Rane</p>
+      <p>(Back End Development.)</p>
+    </div>
+  </div>
+  <p id="dev-info">
+    We are available on all the social media platforms, to connect better do
+    follow us.
+  </p>
+  <div id="social-media">
+    <div>
+      <p>
+        <a href="https://www.youtube.com/@SrirajsIndianRailZone"
+          ><img src="/icon/youtube.png" alt="youtube" class="icon" /> Sriraj's
+          Indian Rail Zone.</a
+        >
+      </p>
+      <p>
+        <a href="https://www.instagram.com/sriraj_takalkar/"
+          ><img src="/icon/instagram.png" alt="insta" class="icon" />
+          sriraj_Indian_rail_zone.</a
+        >
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/sriraj-takalkar-6301532a0/"
+          ><img src="/icon/linkedin.png" alt="" class="icon" /> Sriraj
+          TakalKar.</a
+        >
+      </p>
+    </div>
+    <div>
+      <p>
+        <a href="https://www.instagram.com/shiv_rane_13/"
+          ><img src="/icon/instagram.png" alt="" class="icon" /> shiv_rane_13</a
+        >
+      </p>
+      <p>
+        <a href=""
+          ><img
+            src="/icon/linkedin.png"
+            alt="www.linkedin.com/in/gauravrane13"
+            class="icon"
+          />
+          Gaurav (shiv) Rane</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>

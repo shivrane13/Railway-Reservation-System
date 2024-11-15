@@ -1,0 +1,110 @@
+body {
+    background-color: rgb(236, 252, 253);
+    font-family: sans-serif;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+#create {
+    width: 40rem;
+    margin: auto;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 6px;
+    background-color: rgb(246, 250, 255);
+    margin-bottom: 5rem;
+}
+
+#create ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+input,
+textarea,
+select {
+    font: inherit;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    margin-bottom: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+    background-color: rgb(202, 202, 254);
+    border-color: 1px solid rgb(202, 202, 254);
+}
+
+#create textarea {
+    resize: vertical;
+}
+
+#create label {
+    color: rgb(34, 43, 61);
+    display: block;
+    font-weight: bold;
+}
+
+select {
+    background-color: rgb(66, 63, 63);
+    color: white;
+}
+
+.contact {
+    display: flex;
+}
+
+.contact input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+#terms-accept {
+    margin-top: 0.55rem;
+}
+
+.btn {
+    display: flex;
+    justify-content: right;
+}
+
+button {
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgb(51, 67, 100);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#reset {
+    color: blue;
+    background-color: transparent;
+}
+
+#submit {
+    color: white;
+    background-color: blue;
+    margin-left: 0.25rem;
+}
+
+.btn-alignment {
+    display: flex;
+    justify-content: right;
+}
+
+.submitbtncontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#section2 {
+    display: none;
+}
